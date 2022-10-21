@@ -16,7 +16,7 @@ const Main = () => {
                         <Col className='d-none d-lg-block' lg="2">
                             <LeftSideNav></LeftSideNav>
                         </Col>
-                        <Col lg="7" className='bg-white shadow rounded'>
+                        <Col lg="7">
                             <Outlet></Outlet>
                         </Col>
                         <Col lg="3">

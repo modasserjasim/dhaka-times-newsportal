@@ -1,13 +1,12 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
+import './NewsCards.css'
 import { FaShareAlt, FaRegBookmark, FaStar, FaRegEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-const News = () => {
-    const news = useLoaderData()
+const NewsCard = ({ news }) => {
+    console.log(news);
     const { _id, author, image_url, title, total_view, details, rating } = news;
-
     return (
         <div className='bg-white shadow rounded mb-4'>
             <Card>
@@ -28,7 +27,7 @@ const News = () => {
                     <Card.Title className='text-center'>{title}</Card.Title>
                     <Card.Img src={image_url} alt="News image" />
                     <Card.Text>
-                        {details}
+                        {details.length > 250 ? <p>{details.slice(0, 250) + '...'} <Link to={`/news/${_id}`}>Continue Reading</Link></p> : details}
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className="d-flex justify-content-between">
@@ -41,4 +40,4 @@ const News = () => {
     );
 };
 
-export default News;
+export default NewsCard;
