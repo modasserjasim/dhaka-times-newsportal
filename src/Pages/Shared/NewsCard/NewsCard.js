@@ -5,7 +5,6 @@ import { FaShareAlt, FaRegBookmark, FaStar, FaRegEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const NewsCard = ({ news }) => {
-    console.log(news);
     const { _id, author, image_url, title, total_view, details, rating } = news;
     return (
         <div className='bg-white shadow rounded mb-4'>
@@ -27,7 +26,7 @@ const NewsCard = ({ news }) => {
                     <Card.Title className='text-center'>{title}</Card.Title>
                     <Card.Img src={image_url} alt="News image" />
                     <Card.Text>
-                        {details.length > 250 ? <p>{details.slice(0, 250) + '...'} <Link to={`/news/${_id}`}>Continue Reading</Link></p> : details}
+                        {details.length > 250 ? <span>{details.slice(0, 250) + '...'} <Link to={`/news/${_id}`}>Continue Reading</Link></span> : details}
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className="d-flex justify-content-between">
