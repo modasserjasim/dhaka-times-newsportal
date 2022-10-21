@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Register = () => {
+    const { registerUser } = useContext(AuthContext);
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, email, password);
+
+        registerUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log('new registered user', user);
+                form.reset();
+            })
+            .catch(error => console.log(error));
+
+    }
     return (
         <div className='bg-white shadow rounded p-5'>
             <h3>Register today to get access</h3>
-            <Form>
+            <Form onSubmit={handleRegister}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Your Name</Form.Label>
                     <Form.Control type="text" name='name' placeholder="Your Name" />

@@ -28,7 +28,9 @@ const Header = () => {
                     <Nav className="ms-auto d-flex align-items-lg-center">
                         {
                             user?.uid ? <>
-                                <img style={{ width: '40px', height: '40px', borderRadius: '50px' }} src={user?.photoURL} alt="user profile" />
+                                {
+                                    user?.photoURL ? <img style={{ width: '40px', height: '40px', borderRadius: '50px' }} src={user?.photoURL} alt="user profile" /> : <FaUser></FaUser>
+                                }
                                 <span>{user?.displayName}</span>
                                 <Link onClick={handleLogOut} className="ms-2">Logout</Link>
                             </> : <>
