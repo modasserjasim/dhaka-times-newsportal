@@ -10,7 +10,9 @@ const Home = () => {
 
     return (
         <div>
-            <h1>Welcome, {user?.email}</h1>
+            {
+                user?.displayName && <h3><b>Welcome,</b> {user?.displayName}</h3>
+            }
             {
                 allNews.map(news => <NewsCard key={news._id} news={news}></NewsCard>)
             }

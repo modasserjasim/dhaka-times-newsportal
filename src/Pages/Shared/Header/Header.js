@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
@@ -29,14 +28,14 @@ const Header = () => {
                         {
                             user?.uid ? <>
                                 {
-                                    user?.photoURL ? <img style={{ width: '40px', height: '40px', borderRadius: '50px' }} src={user?.photoURL} alt="user profile" /> : <FaUser></FaUser>
+                                    user?.photoURL ? <Link to='edit-profile'><img style={{ width: '40px', height: '40px', borderRadius: '50px' }} src={user?.photoURL} alt="user profile" /></Link> : <Link to='edit-profile'> <FaUser></FaUser> </Link>
                                 }
                                 <span>{user?.displayName}</span>
                                 <Link onClick={handleLogOut} className="ms-2">Logout</Link>
                             </> : <>
                                 <Link to='/register' className='pe-3'>Register</Link>
                                 <Link to='/login' className='pe-3'>Login</Link>
-                                <FaUser></FaUser>
+                                <Link to='edit-profile'> <FaUser></FaUser> </Link>
                             </>
                         }
                         {/* <Nav.Link ><Link to='/register'>Register</Link> </Nav.Link>
