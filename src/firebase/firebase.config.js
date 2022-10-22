@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDJ_rmfm0_aKcnLBPD3aBktx7OqqlgfzKw",
-    authDomain: "dhaka-times.firebaseapp.com",
-    projectId: "dhaka-times",
-    storageBucket: "dhaka-times.appspot.com",
-    messagingSenderId: "30578310599",
-    appId: "1:30578310599:web:0a9a88fed1db5b23a7ede2"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId
 };
 
 // Initialize Firebase
