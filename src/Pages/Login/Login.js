@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const [error, setError] = useState('');
     const { loginWithEmail } = useContext(AuthContext);
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const navigate = useNavigate();
 
     const handleLogin = e => {
         e.preventDefault();
@@ -17,8 +25,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log('you have logged in successfully', user);
+                setError('');
+                navigate(from, { replace: true });
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            });
     }
     return (
         <div className='bg-white shadow rounded p-5'>
@@ -36,6 +49,7 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Remember me" />
                 </Form.Group>
+                <h5 className='text-danger'>{error}</h5>
                 <Button variant="primary" type="submit">
                     Login Now
                 </Button>

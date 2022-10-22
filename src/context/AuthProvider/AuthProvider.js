@@ -8,11 +8,13 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             console.log('Tracking by useEffect', currentUser);
+            setLoading(false)
         });
         return () => {
             unsubscribe();
@@ -20,21 +22,25 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     const googleLogin = (provider) => {
+        setLoading(true)
         return signInWithPopup(auth, provider)
     }
     const logoutUser = () => {
+        setLoading(true);
         return signOut(auth);
     }
 
     const registerUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const loginWithEmail = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const authInfo = { user, googleLogin, logoutUser, registerUser, loginWithEmail }
+    const authInfo = { user, loading, googleLogin, logoutUser, registerUser, loginWithEmail }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
