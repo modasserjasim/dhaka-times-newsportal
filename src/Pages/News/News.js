@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const News = () => {
     const news = useLoaderData()
-    const { _id, author, image_url, title, total_view, details, rating } = news;
+    const { author, image_url, title, total_view, details, rating } = news;
 
     return (
         <div className='bg-white shadow rounded mb-4'>

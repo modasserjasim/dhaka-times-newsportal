@@ -18,18 +18,18 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:4200/news')
+                loader: () => fetch('https://dhaka-times-server.vercel.app/news')
             },
             {
                 path: '/category/:id',
                 element: <Category></Category>,
-                loader: ({ params }) => fetch(`http://localhost:4200/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://dhaka-times-server.vercel.app/category/${params.id}`)
 
             },
             {
                 path: '/news/:id',
                 element: <PrivateRoute><News></News></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:4200/news/${params.id}`)
+                loader: ({ params }) => fetch(`https://dhaka-times-server.vercel.app/news/${params.id}`)
             },
             {
                 path: 'login',
